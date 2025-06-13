@@ -28,7 +28,7 @@ public class Car {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand() {
         this.brand = brand;
     }
 
@@ -36,7 +36,7 @@ public class Car {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor() {
         this.color = color;
     }
 
@@ -44,7 +44,7 @@ public class Car {
         return yearOfManufacture;
     }
 
-    public void setYearOfManufacture(int yearOfManufacture) {
+    public void setYearOfManufacture() {
         this.yearOfManufacture = yearOfManufacture;
     }
 }

@@ -6,10 +6,14 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.example.exo6.model.Car;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Path("/car")
 public class CarRessource {
 
-    private final CarService carService;
+    private  CarService carService;
+    private List<Car> cars = new ArrayList<>();
 
     @Inject
     public CarRessource(CarService carService) {
@@ -17,27 +21,43 @@ public class CarRessource {
     }
 
 
+
+    // Create
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Car createCar(Car car) {
+        cars.add(car);
+        return car;
+    }
+
+
+
     // Read
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Car getCar() {
-        return new Car(1 , "Peugeot" , "rouge" , 2020);
+    public List<Car> getCar() {
+        return cars ;
     }
+
 
     // Create
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Car postCar(Car car) {
-        car.setId(2);
-    return car;
+        car.setColor();
+        car.setBrand();
+        car.setYearOfManufacture();
+        cars.add(car);
+        return car;
     }
 
     @POST
     @Path("/withService")
     @Produces(MediaType.APPLICATION_JSON)
     public Car postCarWithService() {
-        return carService.save(3, "Toyota", "vert", 2021);
+        return carService.save();
     }
 
     // Update
@@ -45,8 +65,10 @@ public class CarRessource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Car putCar(Car car) {
-        car.setColor("blanc");
-        car.setBrand("Toyota");
+        car.setColor();
+        car.setBrand();
+        car.setYearOfManufacture();
+        cars.add(car);
         return car;
     }
 
